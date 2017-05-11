@@ -1,0 +1,193 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/* omg here is the satan */
+
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+li{
+   
+}
+.shift{
+    margin-left: 20px; /* can be negative, but this is best for now */
+}
+
+.shiftRight{
+    margin-left: 20px;
+}
+
+.shiftLeft{
+    margin-right: 244px;
+}
+
+a {
+    white-space: nowrap;
+}
+
+.newLine{
+     word-break: normal; 
+}
+
+.bold { font-weight: bold; }
+
+.pub { border: 3px solid black}
+
+.draft {  }
+
+.myArea{
+    min-width: 80%;
+    max-width: 80%;
+}
+
+.myArea2{
+    min-width: 100%;
+    max-width: 100%;
+    font-size: 15px;
+}
+.myJumbotron{
+    margin-bottom: -1px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.myJumbotron2{
+    padding: 20px;
+    padding-bottom: 70px;
+}
+
+
+.myJumbotron3{
+    margin-top: 0px;
+    padding: 20px;
+    padding-top: 10px;
+    background-color:#fcf6ef;
+    border: 1px solid black;
+}
+
+.myJumbotron4{
+    margin-top: 0px;
+    margin-bottom: -1px;
+    padding: 20px;
+    padding-top: 10px;
+    background-color:#fcf6ef;
+    border: 1px solid black;
+}
+.enlargeSpace{
+  /*  margin-bottom: 50px; */
+  /*  margin-top: -10px; */
+}
+
+.middle{
+    text-align:center;
+    font-size: 15px;
+}
+
+.pages{
+    margin-top: 6px;
+}
+
+
+
+.navbar-custom {
+    background-color:#ed983d;
+    color:black;
+    min-height:40px;
+    font-size:99.5%;
+
+}
+
+
+
+.rect {
+    background-color: #eeeeee;
+   /* border: 1px solid red; */
+}
+
+.rect2 {
+    margin-bottom:-1px;
+    background-color: #ed983d;
+    margin-right:500px;
+    border: 1px solid black;
+    padding:1px;
+    padding-left:10px;
+   
+    text-align:left;
+   /* border: 1px solid red; */
+}
+
+.rect3 {
+    margin-bottom:-1px;
+    margin-top:0px;
+    background-color: #ed983d; /*#eeeeee*/
+    margin-right:500px;
+    border: 1px solid black;
+    padding:1px;
+    padding-left:10px;
+   
+    text-align:left;
+   /* border: 1px solid red; */
+}
+
+.rect4 {
+   
+    background-color: #ed983d;
+    margin-right:40px;
+   
+    text-align:left;
+   /* border: 1px solid red; */
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+.navbar-custom{
+    background-color:#ed983d;
+ 
+}
+
+
+.textColor{
+    color:black;
+    text-align:center;
+    max-height:10px;
+    min-height:10px;
+}
+
+.textColor:hover{
+    color:red;
+}

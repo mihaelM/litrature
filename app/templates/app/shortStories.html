@@ -1,0 +1,39 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<br />
+<br /> 
+
+<div class="row">
+
+    <div class="col-md-8">
+       
+         <div class="rect3 box"> 
+                    <b> Short stories </b>
+         </div>
+
+              {% for story in stories %}
+
+             <div class="jumbotron myJumbotron4">
+                <h2> <b> {{story.title}} </b> </h2>
+                <h6> Posted: {{story.date}} </h6>
+                <p class="middle">  <i> {{story.author_ID}} </i> 
+                <a href="/look/story/{{story.id}}" class="btn btn-primary btn-large pull-right"> Read more &raquo;</a>
+                 </p>
+            </div>
+
+        {% endfor %}
+        
+        <button class="btn btn-primary btn-large pages"> Drafts1 </button> 
+        <button class="btn btn-primary btn-large pages"> Drafts2 </button>
+
+    </div>
+
+    
+    {% include 'app/search.html' %}
+
+</div>
+
+
+{% endblock %}

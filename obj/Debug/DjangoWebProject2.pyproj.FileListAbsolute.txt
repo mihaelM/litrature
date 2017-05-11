@@ -1,0 +1,15 @@
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\bin\Microsoft.PythonTools.WebRole.dll
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\obj\Debug\attach_server.py
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\obj\Debug\visualstudio_py_debugger.py
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\obj\Debug\visualstudio_py_repl.py
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\obj\Debug\visualstudio_py_util.py
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\obj\Debug\__init__.py
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\obj\Debug\__main__.py
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\bin\AzureSetup.cfg
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\bin\Microsoft.PythonTools.AzureSetup.exe
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\bin\Microsoft.PythonTools.AzureSetup.exe.config
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\bin\wfastcgi.py
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\obj\Debug\deployment-updated-orig-prefix.txt
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\ptvs_virtualenv_proxy.py
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\obj\Debug\web.config
+d:\users\mihael\documents\visual studio 2015\Projects\DjangoSetup\DjangoWebProject2\obj\Debug\web.debug.config

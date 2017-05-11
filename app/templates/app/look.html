@@ -1,0 +1,116 @@
+﻿{% extends "app/layout.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script> 
+<script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+<script src="{% static 'app/scripts/myScript.js' %}"></script>
+
+
+<div class="row">
+
+    <div class="col-md-8">
+       
+         <div class="jumbotron myJumbotron2">
+
+            <b> {{title}} </b>     
+            <h6> <b>Genre: </b>{{genre}}  &nbsp;&nbsp;&nbsp; <b>Date: </b>{{date}} &nbsp;&nbsp;&nbsp; {% if source %} <b>Source </b>{{source}} {% endif %}</h6> 
+             <!--original only for quotes-->
+             <pre class="newLine">{{text}}</pre>
+
+                <div class = "pull-left">
+                    <h6>
+                        <button class="btn"> Follow author </button> <b>Posted by: </b>{{author}} &nbsp;&nbsp;&nbsp;   <!--if not already following-->
+                    </h6>
+                </div>
+
+                <div  class = "pull-right"> <!--there was h6 size of text should do it-->
+                     
+                       <h6>  <b>Views: </b> {{views}}
+                         <b> Upvotes:</b>  <span id="upvotes"> {{upvotes}} </span>
+                        
+                          {% if user.is_authenticated %}
+                            
+                              {% if hasIt == 0 %} 
+                                <button onclick="upvote()"class="btn"> Upvote </button>
+                              {% else %}
+                                <button onclick="removeUpvote()"class="btn"> Remove upvote </button>                    
+                              {% endif %}
+
+                          {% endif %}
+                    
+
+                       </h6>
+                </div>
+            
+        </div>
+
+        <div class="jumbotron myJumbotron2">
+            <h3>Comments</h3>
+            <textarea class="myArea2" rows = "2" placeholder="Enter your comment here"></textarea>
+             <div  class = "pull-right">
+                <button class="btn"> Add comment </button>
+            </div>
+            <br />
+            <br />
+
+           <hr style="height:1px;border-top:1px solid #000000" />
+
+           <div class="row">
+                   <div class="col-md-2">
+                            <h5> <b> QuantBoy </b> </h5>
+                            <img src="{% static 'app/images/dogeIsReal.jpeg'  %}"  height="70" width="70" />
+                   </div>
+
+                    <div class="col-md-10">
+                       <p> 
+                            <h5>
+                             I think this song has got it all.
+                             I think this song has got it all.
+                             I think this song has got it all.
+                            </h5>
+
+                            <h6 class="pull-right"> <b> 1.1.2011. </b> </h6>
+                       </p>
+                 </div>
+           </div>
+           
+            <hr style="height:1px;border-top:1px solid #000000" />
+
+
+
+            <div class="row">
+                   <div class="col-md-2">
+                            <h5> <b> QuantBoy </b> </h5>
+                            <img src="{% static 'app/images/dogeIsReal.jpeg'  %}"  height="70" width="70" />
+                   </div>
+
+                    <div class="col-md-10">
+                       <p> 
+                            <h5>
+                             I think this song has got it all.
+                             I think this song has got it all.
+                             I think this song has got it all.
+                            </h5>
+
+                            <h6 class="pull-right"> <b> 1.1.2011. </b> </h6>
+                       </p>
+                 </div>
+           </div>
+           
+            <hr style="height:1px;border-top:1px solid #000000" />
+
+        </div>
+
+    </div>
+
+    
+    {% include 'app/search.html' %}
+
+     
+
+</div>
+
+{% endblock %}

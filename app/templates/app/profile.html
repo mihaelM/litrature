@@ -1,0 +1,100 @@
+﻿{% extends "app/layout.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script> 
+<script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+<script src="{% static 'app/scripts/myScript.js' %}"></script>
+
+<br />
+
+<div class="row">
+
+    <div class="col-md-1">
+        
+         <img src="{% static 'app/images/dogeIsReal.jpeg'  %}"  height="110" width="110" />
+        
+    </div>
+
+    
+    <div class="col-md-4">
+
+        <div class="shiftRight">
+             <p> <b> User name: </b> {{username}}</p>
+             <p> <b> Number of posts: </b> 12 </p>
+             <p> <b> Number of views of all content : </b> 250 </p>
+             <p> <b> Total number of upvotes : </b> 30 </p>
+        </div>
+    </div>
+
+    <!--will be hidden when looking somones else profile-->
+     <div class="col-md-2">
+        
+              <b> Following:  </b> 234 <br />
+               <input type="image" src="{% static 'app/images/loadMore.png'  %}"  height="25" width="67" />
+        
+    </div>
+
+     <div class="col-md-2">
+         <div class="pull-left">
+              <b> Followers:  </b>211 <br />
+               <input type="image" src="{% static 'app/images/loadMore.png'  %}"  height="25" width="67" />
+         </div>
+    </div>
+
+    <div class="coll-md-3">
+         <div class="pull-right">
+             <button class="btn btn-primary btn-large  pub" > Published </button>
+         
+             <button class="btn btn-primary btn-large draft"> Drafts </button>
+         </div>
+    </div>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-md-4">
+        <h2 class="text1 bold"> Songs</h2>
+  
+        <p><a class="btn btn-default b1" onclick="loadData('poetry')"> Load songs </a></p> <!-- loaded by default -->
+    </div>
+    <div class="col-md-4">
+        <h2 class="text2"> Quotes</h2>
+        <p><a class="btn btn-default b2" onclick="loadData('quotes')" > Load quotes </a></p> 
+    </div>
+    <div class="col-md-4"> 
+        <h2 class="text3"> Short stories</h2>
+         <p><a class="btn btn-default b3" onclick="loadData('stories')" > Load stories </a></p> 
+    </div>
+</div>
+
+<br /> 
+<br />
+
+<div class="row">
+
+     <div class="dropdown pull-right">
+        <button class="btn btn-primary dropdown-toggle" type="button"  data-toggle="dropdown">Sort by
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li><a href="#" id="bs1">Date posted</a></li>
+          <li><a href="#" id="bs2">Views</a></li>
+          <li><a href="#" id="bs3" onclick="linkSort()">Alphabet</a></li>
+   <!--  <li><button class="dropdown-item" type="button" id="bs3" onclick="linkSort()">Alphabet</button></li> -->
+        </ul>
+    </div>
+
+   <div class="jumbotron">
+
+        <p id ="links">
+            {% for song in songs %}
+             <a href="/look/poetry/{{song.id}}"> {{song.title}} </a> &nbsp; &nbsp;     
+            {% endfor %}
+       </p>
+    </div>
+
+</div>
+
+{% endblock %}

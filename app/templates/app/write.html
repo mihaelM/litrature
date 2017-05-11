@@ -1,0 +1,54 @@
+﻿{% extends "app/layout.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+<script src="{% static 'app/scripts/myScript.js' %}"></script>
+
+<!--i will do rendering just to try it-->
+
+
+
+<form action="." method="post" class="form-horizontal">
+    {% csrf_token %} 
+    <div class="row">
+
+        <div class="col-md-4">
+             
+             <input type="text" class="form-control" name="titleLit"  placeholder="Title" required>  
+                                                  
+             <br />
+
+             Genre:
+             <label class="radio-inline"> <input type="radio" name="art" class="remove" value="Poetry" checked>  Poetry </label>
+             <label class="radio-inline"> <input type="radio" name="art" id="add" value="Quote">  Quote </label>
+             <label class="radio-inline"> <input type="radio" name="art" class="remove" value="Story">Short story  </label> 
+
+             <br />
+             <div class="inner" id="inputplace"></div>
+        </div>
+
+
+
+    </div>
+
+    <br />
+
+     <div class="row">
+            <div class="col-md-12">
+               <textarea class="myArea form-control" name="text" rows="10" placeholder="Enter your text here" required></textarea>
+           </div>
+     </div>
+
+    <br />
+
+    <div class="row">
+         <div class="pull-right shiftLeft">
+            <input type="submit" name ="draft" class="btn btn-default" value="Save as draft">
+            <input type="submit" name ="publish" class="btn btn-default" value="Publish">
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}
