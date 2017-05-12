@@ -383,7 +383,16 @@ def register(request):
     """Renders the quotes page."""
     assert isinstance(request, HttpRequest)
  
- 
+        
+    return render(
+            request,
+            'app/register.html', #add
+            {
+                'form':form
+            }
+            )
+
+"""
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         data = form.cleaned_data
@@ -392,18 +401,20 @@ def register(request):
 
         user = User.objects.create_user(username, mail, password)
         user.save()
+
+        # we need to save it user details also
+        return HttpResponseRedirect(reverse('myprofile'))
+    else:  
+
+        #only get for now
+        form = RegisterForm()
         
-
-    
-
-    #only get for now
-    form = RegisterForm()
-    """
-    return render(
-        request,
-        'app/register.html', #add
-        {
-            'form':form
-        }
-    )
+        return render(
+            request,
+            'app/register.html', #add
+            {
+                'form':form
+            }
+        )
      
+ """
