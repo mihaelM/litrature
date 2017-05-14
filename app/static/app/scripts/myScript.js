@@ -33,10 +33,18 @@ function loadData(type) { //we can say we do not care what is the type
 
         success: function (response) {
 
+            typeMap = { "poetry": "poetry", "quotes": "quote", "stories": "story" };
+
             $('#links').html('');
 
+           // console.log(response);
+           // console.log("\n");
+
             for (key in response) {
-                $('#links').append('<a href="/look/poetry/' + response.key.id + '"> ' + response.key.title + '</a> &nbsp; &nbsp;');
+                //console.log(key);
+                //console.log(response[key]);
+
+                $('#links').append('<a href="/look/' + typeMap[type] + '/' + response[key]['id'] + '"> ' + response[key]['title'] + '</a> &nbsp; &nbsp;');
             }
 
         }

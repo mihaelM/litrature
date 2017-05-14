@@ -159,16 +159,17 @@ def loadData(request, type): ###we do not need 2 instances of type, but we can p
 
     if type == 'poetry':      
         art = ArtPublish.objects.all().filter(author_ID = username, genre = 'Poetry').defer("id", "title")  
-    elif type == 'quotes':
-        art = ArtPublish.objects.all().filter(author_ID = username, genre = 'Stories').defer("id", "title")
-    elif type =='stories':
-        art = QuotePublish.objects.all().filter(author_ID = username, genre = 'Poetry').defer("id", "title")
+    elif type == 'stories':
+        art = ArtPublish.objects.all().filter(author_ID = username, genre = 'Story').defer("id", "title")
+    elif type =='quotes':
+        art = QuotePublish.objects.all().filter(author_ID = username, genre = 'Quote').defer("id", "title")
     
     dictArt = {}
 
     for i, art_instance in enumerate(art):
         dictArt[i] = {'id':art_instance.id, 'title': art_instance.title}
 
+    print(dictArt)
 
     return HttpResponse(
             json.dumps(dictArt),
