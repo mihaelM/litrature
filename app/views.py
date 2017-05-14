@@ -1,7 +1,7 @@
 """
 Definition of views.
 """
-
+from django.db.models import Sum
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
@@ -92,22 +92,51 @@ def mylogin(request):
 
 #httpredirect not so good
 
+def x(input):
+    return 0 if input is None else input
+
 def myprofile(request):
     """Renders the my profile page."""
     assert isinstance(request, HttpRequest)
    # print (request.POST['username'])
     username = request.user
     
+    try:
+        profile_pic = UserDetails.objects.all().filter(user = username).defer("profile_pic")[0]
+    except:
+        profile_pic = None
+    
     # load songs of his, that's it basically
 
     songs = ArtPublish.objects.all().filter(author_ID = username, genre = 'Poetry').defer("id", "title")
-       
+
+    #count posts first
+    numOfPosts = ArtPublish.objects.all().filter(author_ID = username).count()
+    print("broj {}".format(numOfPosts))
+    numOfPosts += QuotePublish.objects.all().filter(author_ID = username).count()
+
+    #number of views of his art of course, what else
+
+    numOfViews = x(ArtPublish.objects.all().filter(author_ID = username).aggregate(Sum('views'))['views__sum'])
+
+    numOfViews += x(QuotePublish.objects.all().filter(author_ID = username).aggregate(Sum('views'))['views__sum'])
+
+    # numer of upvotes of his art ofcourse
+
+    numOfUpvotes = x(ArtPublish.objects.all().filter(author_ID = username).aggregate(Sum('upvotes'))['upvotes__sum'])
+    numOfUpvotes += x(QuotePublish.objects.all().filter(author_ID = username).aggregate(Sum('upvotes'))['upvotes__sum'])
+    
+
     return render(
         request,
         'app/profile.html', #add
         {
             'username':username,
-            'songs' : songs
+            'songs' : songs,
+            'numOfPosts' : numOfPosts,
+            'numOfViews': numOfViews,
+            'numOfUpvotes': numOfUpvotes,
+            'profile_pic': profile_pic
         }
     )
 
@@ -382,39 +411,37 @@ def profileSearch(request):
 def register(request):
     """Renders the quotes page."""
     assert isinstance(request, HttpRequest)
- 
-        
-    return render(
-            request,
-            'app/register.html', #add
-            {
-                'form':form
-            }
-            )
+    print("ARE WE EVEN HERE")
 
-"""
+
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        data = form.cleaned_data
-       
-        favorite_books, password, pseudonime, username, mail = data['favorite_books'], data['password'], 
+        username = request.POST['username']
+        password = request.POST['password']
+        email = request.POST['email']
+        pseudonime = request.POST['pseudonime']
+        favoriteBooks = request.POST['favoriteBooks']
+        pic = request.POST['pic']
 
-        user = User.objects.create_user(username, mail, password)
+        user = User.objects.create_user(username, email, password)
         user.save()
+
+        userDetails = UserDetails(user = user, pseudonime = pseudonime, favorite_book = favoriteBooks, profile_pic = pic)
+        userDetails.save()
+
+
+        user = authenticate(username=username, password=password) #not solving none yet
+        print(username)
+        print(password)
+
+        print(login(request, user))
+
 
         # we need to save it user details also
         return HttpResponseRedirect(reverse('myprofile'))
     else:  
 
-        #only get for now
-        form = RegisterForm()
-        
         return render(
             request,
-            'app/register.html', #add
-            {
-                'form':form
-            }
+            'app/register.html'
         )
      
- """

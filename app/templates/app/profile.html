@@ -13,7 +13,9 @@
 
     <div class="col-md-1">
         
-         <img src="{% static 'app/images/dogeIsReal.jpeg'  %}"  height="110" width="110" />
+       <!--  <img src="{% static 'app/images/dogeIsReal.jpeg'  %}"  height="110" width="110" /> -->
+        <img src="{{ profile_pic.url }}"  height="110" width="110" />
+        
         
     </div>
 
@@ -22,9 +24,9 @@
 
         <div class="shiftRight">
              <p> <b> User name: </b> {{username}}</p>
-             <p> <b> Number of posts: </b> 12 </p>
-             <p> <b> Number of views of all content : </b> 250 </p>
-             <p> <b> Total number of upvotes : </b> 30 </p>
+             <p> <b> Number of posts: </b> {{numOfPosts}} </p>
+             <p> <b> Number of views of all content : </b> {{numOfViews}} </p>
+             <p> <b> Total number of upvotes : </b> {{numOfUpvotes}} </p>
         </div>
     </div>
 

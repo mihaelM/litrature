@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^quotes', app.views.quotes, name='quotes'),
     url(r'^look/(quote|poetry|story)/([0-9]*)$', app.views.look), #name is redundant on some of those
     url(r'^look/(quote|poetry|story)/([0-9]*)/upvote', app.views.upvote),
-    url(r'^register', app.views.register, name='register'),
+    url(r'^register/$', app.views.register, name='register'),
     url(r'^login/$', app.views.mylogin, name='mylogin'),
     url(r'^logout$',
         django.contrib.auth.views.logout,

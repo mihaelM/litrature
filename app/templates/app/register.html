@@ -11,31 +11,38 @@
                 
                 <div class="form-group">
                     <div class="col-md-9">
-                         <input type="text" class="form-control" name="username"  placeholder="Title">  
+                         <input type="text" class="form-control" name="username"  placeholder="Username:">  
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-9">
-                        <input type="password" class="form-control" name="password"  placeholder="Title">  
+                        <input type="password" class="form-control" name="password"  placeholder="Password:">  
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-9">
+                        <input type="email" class="form-control" name="email"  placeholder="E-mail:">  
                     </div>
                 </div>
 
                <div class="form-group">
                     <div class="col-md-9">
-                        {{ form.pseudonime }}
+                        <input type="text" class="form-control" name="pseudonime"  placeholder="Pseudonime:">  
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-9">
-                        {{ form.favorite_books }}
+                    <input type="text" class="form-control" name="favoriteBooks"  placeholder="Favorite book(s):">  
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-9">
+                     <!-- authomatic generation of profile picture ?-->
                         
-                        <input type="file" value="Upload your profile picture" name="pic" accept="image/*"> <!--maybe django has form(?) hm ImageField-->
+                     <input type="file" value="Upload your profile picture" name="pic" accept="image/*"> 
                     </div>
                 </div>
 

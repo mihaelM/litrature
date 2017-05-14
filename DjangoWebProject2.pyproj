@@ -53,8 +53,11 @@
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
     <Folder Include="DjangoWebProject2\" />
+    <Folder Include="Metadata\" />
+    <Folder Include="Metadata\deploymentTemplates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="apiapp.json" />
     <Content Include="app\static\app\images\dogeIsReal.jpeg" />
     <Content Include="app\static\app\images\literature.png" />
     <Content Include="app\static\app\images\loadMore.png" />
@@ -68,6 +71,7 @@
     <Content Include="app\templates\app\search.html" />
     <Content Include="app\templates\app\shortStories.html" />
     <Content Include="app\templates\app\write.html" />
+    <Content Include="Metadata\deploymentTemplates\apiappconfig.azureresource.json" />
     <Content Include="Pillow-4.0.0-cp27-cp27m-win32.whl" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
