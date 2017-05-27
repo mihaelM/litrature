@@ -3,8 +3,8 @@
         {% csrf_token %}
         <ul class="nav navbar-nav navbar-right navbar-custom">
         
-            <li><a href="{% url 'write!' %}"> <div class="textColor"> Write!  </div> </a></li>
-            <li><a href="{% url 'myprofile' %}"> <div class="textColor">My profile </div></a></li>
+            <li><a href="{% url 'write!' %}" class="l5"> <div class="textColor g5"> Write!  </div> </a></li>
+            <li><a href="{% url 'myprofile' %}" class="l6"> <div class="textColor g6">My profile </div></a></li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()"> <div class="textColor">  Log off  </div> </a></li>
         </ul>
 
@@ -14,8 +14,8 @@
 
 <ul class="nav navbar-nav navbar-right navbar-custom">
    
-    <li><a href="{% url 'register' %}"> <div class="textColor">Register </div></a></li>
-    <li><a href="{% url 'mylogin' %}"> <div class="textColor">Log in </div> </a></li>
+    <li><a href="{% url 'register' %}" class="l7"> <div class="textColor g7">Register </div></a></li>
+    <li><a href="{% url 'mylogin' %}" class="l8"> <div class="textColor g8">Log in </div> </a></li>
 </ul> 
 
 {% endif %}

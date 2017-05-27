@@ -15,10 +15,10 @@
         <div class="container navbar-custom">
             <div class="navbar-collapse navbar-custom collapse">
                     <ul class="nav navbar-nav navbar-custom">
-                            <li><a href="{% url 'home' %}" >  <div class="textColor">  Home  </div> </a></li>   
-                            <li><a href="{% url 'poetry' %}"> <div class="textColor"> Poetry </div> </a></li>
-                            <li><a href="{% url 'shortstories' %}"> <div class="textColor">  Short stories </div></a> </li>
-                            <li><a href="{% url 'quotes' %}"> <div class="textColor"> Quotes </div></a></li>   
+                            <li><a href="{% url 'home' %}" class="l1">  <div class="textColor g1">  Home  </div> </a></li>   
+                            <li><a href="{% url 'poetry' %}" class="l2"> <div class="textColor g2"> Poetry </div> </a></li>
+                            <li><a href="{% url 'shortstories' %}" class="l3"> <div class="textColor g3">  Short stories </div></a> </li>
+                            <li><a href="{% url 'quotes' %}" class="l4"> <div class="textColor g4"> Quotes </div></a></li>   
                     </ul>
                    {% include 'app/loginpartial.html' %}
 
@@ -30,7 +30,7 @@
 {% block content %}{% endblock %}
         <hr/>
         <footer>
-            <p>&copy; {{ year }} - miha.maj creations</p>
+            <p>&copy; {{ year }} - icr creations</p>
         </footer>
     </div>
 

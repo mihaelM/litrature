@@ -118,6 +118,101 @@ $(document).ready(function () {
 });
 
 
+/* currently not used and not working -> could make 8 functions and each website calls its own to bold it*/
+
+function makeBold(){
+
+    $(".l1").click(function () {
+        $(".g1").css("font-weight", "bold");
+        $(".g2").css("font-weight", "normal");
+        $(".g3").css("font-weight", "normal");
+        $(".g4").css("font-weight", "normal");
+        $(".g5").css("font-weight", "normal");
+        $(".g6").css("font-weight", "normal");
+        $(".g7").css("font-weight", "normal");
+        $(".g8").css("font-weight", "normal");
+    });
+
+    $(".l2").click(function () {
+        $(".g1").css("font-weight", "normal");
+        $(".g2").css("font-weight", "bold");
+        $(".g3").css("font-weight", "normal");
+        $(".g4").css("font-weight", "normal");
+        $(".g5").css("font-weight", "normal");
+        $(".g6").css("font-weight", "normal");
+        $(".g7").css("font-weight", "normal");
+        $(".g8").css("font-weight", "normal");
+    });
+
+    $(".l3").click(function () {
+        $(".g1").css("font-weight", "normal");
+        $(".g2").css("font-weight", "normal");
+        $(".g3").css("font-weight", "bold");
+        $(".g4").css("font-weight", "normal");
+        $(".g5").css("font-weight", "normal");
+        $(".g6").css("font-weight", "normal");
+        $(".g7").css("font-weight", "normal");
+        $(".g8").css("font-weight", "normal");
+    });
+
+    $(".l4").click(function () {
+        $(".g1").css("font-weight", "normal");
+        $(".g2").css("font-weight", "normal");
+        $(".g3").css("font-weight", "normal");
+        $(".g4").css("font-weight", "bold");
+        $(".g5").css("font-weight", "normal");
+        $(".g6").css("font-weight", "normal");
+        $(".g7").css("font-weight", "normal");
+        $(".g8").css("font-weight", "normal");
+    });
+
+    $(".l5").click(function () {
+        $(".g1").css("font-weight", "normal");
+        $(".g2").css("font-weight", "normal");
+        $(".g3").css("font-weight", "normal");
+        $(".g4").css("font-weight", "normal");
+        $(".g5").css("font-weight", "bold");
+        $(".g6").css("font-weight", "normal");
+        $(".g7").css("font-weight", "normal");
+        $(".g8").css("font-weight", "normal");
+    });
+
+    $(".l6").click(function () {
+        $(".g1").css("font-weight", "normal");
+        $(".g2").css("font-weight", "normal");
+        $(".g3").css("font-weight", "normal");
+        $(".g4").css("font-weight", "normal");
+        $(".g5").css("font-weight", "normal");
+        $(".g6").css("font-weight", "bold");
+        $(".g7").css("font-weight", "normal");
+        $(".g8").css("font-weight", "normal");
+    });
+
+    $(".l7").click(function () {
+        $(".g1").css("font-weight", "normal");
+        $(".g2").css("font-weight", "normal");
+        $(".g3").css("font-weight", "normal");
+        $(".g4").css("font-weight", "normal");
+        $(".g5").css("font-weight", "normal");
+        $(".g6").css("font-weight", "normal");
+        $(".g7").css("font-weight", "bold");
+        $(".g8").css("font-weight", "normal");
+    });
+
+    $(".l8").click(function () {
+        $(".g1").css("font-weight", "normal");
+        $(".g2").css("font-weight", "normal");
+        $(".g3").css("font-weight", "normal");
+        $(".g4").css("font-weight", "normal");
+        $(".g5").css("font-weight", "normal");
+        $(".g6").css("font-weight", "normal");
+        $(".g7").css("font-weight", "bold");
+        $(".g8").css("font-weight", "normal");
+    });
+
+}
+
+
 
 $(document).ready(function () {
 

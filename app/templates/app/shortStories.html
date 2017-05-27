@@ -8,8 +8,19 @@
 <div class="row">
 
     <div class="col-md-8">
+
+          {% if user.is_authenticated %}
+        
+                 <div class="box rect"> 
+                    <p class="shift incSize"> 
+                        Click to <a href="{% url 'write!' %}"><b>Write!</b></a> 
+                    </p> 
+                </div>
+                <br />
+
+         {% endif %}
        
-         <div class="rect3 box"> 
+         <div class="rect3 box incSize"> 
                     <b> Short stories </b>
          </div>
 
@@ -25,8 +36,8 @@
 
         {% endfor %}
         
-        <button class="btn btn-primary btn-large pages"> Drafts1 </button> 
-        <button class="btn btn-primary btn-large pages"> Drafts2 </button>
+      <!--  <button class="btn btn-primary btn-large pages"> Drafts1 </button> -->
+      <!-- <button class="btn btn-primary btn-large pages"> Drafts2 </button>  -->
 
     </div>
 

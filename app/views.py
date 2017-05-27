@@ -112,7 +112,7 @@ def myprofile(request):
 
     #count posts first
     numOfPosts = ArtPublish.objects.all().filter(author_ID = username).count()
-    print("broj {}".format(numOfPosts))
+    #print("broj {}".format(numOfPosts))
     numOfPosts += QuotePublish.objects.all().filter(author_ID = username).count()
 
     #number of views of his art of course, what else
@@ -412,7 +412,7 @@ def profileSearch(request):
 def register(request):
     """Renders the quotes page."""
     assert isinstance(request, HttpRequest)
-    print("ARE WE EVEN HERE")
+    #print("ARE WE EVEN HERE")
 
 
     if request.method == 'POST':
@@ -431,11 +431,10 @@ def register(request):
 
 
         user = authenticate(username=username, password=password) #not solving none yet
-        print(username)
-        print(password)
+        #print(username)
+        #print(password)
 
-        print(login(request, user))
-
+        login(request, user)
 
         # we need to save it user details also
         return HttpResponseRedirect(reverse('myprofile'))
