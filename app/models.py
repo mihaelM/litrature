@@ -69,6 +69,15 @@ class Following(models.Model):
     following = models.BigIntegerField()
 
 
+class ArtPublishComment(models.Model):
+    author_ID = models.ForeignKey(User, on_delete=models.CASCADE)
+    artPublish_ID = models.ForeignKey(ArtPublish, on_delete=models.CASCADE)
+    text = models.TextField()
+
+class QuotePublishComment(models.Model):
+    author_ID = models.ForeignKey(User, on_delete=models.CASCADE)
+    quotePublish_ID = models.ForeignKey(QuotePublish, on_delete=models.CASCADE)
+    text = models.TextField()
 
 
 

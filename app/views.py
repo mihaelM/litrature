@@ -295,7 +295,7 @@ def upvote(request, type, id):
     return HttpResponse()
 
 
-
+###look of publish art (poetry, quote, s. story)
 def look(request, type, id):
     assert isinstance(request, HttpRequest)
 
@@ -305,34 +305,55 @@ def look(request, type, id):
     hasIt = 0
 
     # should have used get, we'll try with that also..
+    # allComments = []
     if type == 'quote':
         quote = QuotePublish.objects.get(id = id)
 
         title, genre, date, user, text, originalAuthor, views, upvotes = quote.title, quote.genre, quote.date, quote.author_ID, quote.text, quote.originalAuthor, quote.views, quote.upvotes
+        if request.method == 'GET':
+
+            quote.views = F('views') + 1
+            quote.save()
+
+            # we should check if user has liked this particular quote in the beggining he surely did not
+            hasIt = AuthorsUpvotes.objects.all().filter(author_ID = quote.author_ID, type = quote.genre, art_ID = id).count()
+
+        elif request.method == 'POST':
+            comment = request.POST['comment']
+           # print(comment)
+            
+            quotePublishComment = QuotePublishComment(author_ID = request.user, quotePublish_ID = quote, text = comment)
+            quotePublishComment.save()
         
-        quote.views = F('views') + 1
-        quote.save()
-
-        # we should check if user has liked this particular quote in the beggining he surely did not
-        hasIt = AuthorsUpvotes.objects.all().filter(author_ID = quote.author_ID, type = quote.genre, art_ID = id).count()
-
-
+        allComments = QuotePublishComment.objects.all().filter(quotePublish_ID = quote).defer("author_ID", "text")
 
     else:
         art = ArtPublish.objects.get(id = id)
 
         title, genre, date, user, text, views, upvotes = art.title, art.genre, art.date, art.author_ID, art.text, art.views, art.upvotes   
         
-        art.views = F('views') + 1
-        art.save()
+        if request.method == 'GET':
+            art.views = F('views') + 1
+            art.save()
 
-        hasIt = AuthorsUpvotes.objects.all().filter(author_ID = art.author_ID, type = art.genre, art_ID = id).count()
+            hasIt = AuthorsUpvotes.objects.all().filter(author_ID = art.author_ID, type = art.genre, art_ID = id).count()
 
+            #gather all comments of this work
+
+        elif request.method == 'POST':
+            comment = request.POST['comment']
+
+            artPublishComment = ArtPublishComment(author_ID = request.user, artPublish_ID = art, text = comment)
+            artPublishComment.save()
+    
+
+        allComments = ArtPublishComment.objects.all().filter(artPublish_ID = art).defer("author_ID", "text")
 
     return render(
         request,
         'app/look.html', #add
         {
+            'id':id,
             'title':title,
             'genre':genre,
             'date':date,
@@ -341,7 +362,8 @@ def look(request, type, id):
             'originalAuthor':originalAuthor,
             'views':views + 1,
             'upvotes':upvotes,
-            'hasIt':hasIt
+            'hasIt':hasIt,
+            'allComments':allComments
         }
     )
 

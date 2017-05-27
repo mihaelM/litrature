@@ -49,59 +49,49 @@
 
         <div class="jumbotron myJumbotron2">
             <h3>Comments</h3>
-            <textarea class="myArea2" rows = "2" placeholder="Enter your comment here"></textarea>
-             <div  class = "pull-right">
-                <button class="btn"> Add comment </button>
-            </div>
-            <br />
-            <br />
 
-           <hr style="height:1px;border-top:1px solid #000000" />
+            
+            {% if user.is_authenticated %}
+            
+                <form action="{{id}}" method="post" class="form-horizontal">
+                        {% csrf_token %} 
+                        <textarea class="myArea2" name="comment" rows = "2" placeholder="Enter your comment here"></textarea>
+                         <div  class = "pull-right">
+                             <input type="submit" class="btn btn-default" value="Comment"> 
+                        </div>
+                </form>
 
-           <div class="row">
-                   <div class="col-md-2">
-                            <h5> <b> QuantBoy </b> </h5>
-                            <img src="{% static 'app/images/dogeIsReal.jpeg'  %}"  height="70" width="70" />
-                   </div>
+                <br />
+                <br />
 
-                    <div class="col-md-10">
-                       <p> 
-                            <h5>
-                             I think this song has got it all.
-                             I think this song has got it all.
-                             I think this song has got it all.
-                            </h5>
+            {% endif %}
+        
+        
 
-                            <h6 class="pull-right"> <b> 1.1.2011. </b> </h6>
-                       </p>
-                 </div>
-           </div>
+            {% for comment in allComments %}
+
+               <hr style="height:1px;border-top:1px solid #000000" />
+
+               <div class="row">
+                       <div class="col-md-2">
+                                <h5> <b> {{comment.author_ID}} </b> </h5>
+                                <img src="{% static 'app/images/dogeIsReal.jpeg'  %}"  height="70" width="70" />
+                       </div>
+
+                        <div class="col-md-10">
+                           <p> 
+                                <h5>
+                                    {{comment.text}}
+                                </h5>
+
+                                <h6 class="pull-right"> <b> 1.1.2011. </b> </h6>
+                           </p>
+                     </div>
+               </div>
            
-            <hr style="height:1px;border-top:1px solid #000000" />
+                <hr style="height:1px;border-top:1px solid #000000" />
 
-
-
-            <div class="row">
-                   <div class="col-md-2">
-                            <h5> <b> QuantBoy </b> </h5>
-                            <img src="{% static 'app/images/dogeIsReal.jpeg'  %}"  height="70" width="70" />
-                   </div>
-
-                    <div class="col-md-10">
-                       <p> 
-                            <h5>
-                             I think this song has got it all.
-                             I think this song has got it all.
-                             I think this song has got it all.
-                            </h5>
-
-                            <h6 class="pull-right"> <b> 1.1.2011. </b> </h6>
-                       </p>
-                 </div>
-           </div>
-           
-            <hr style="height:1px;border-top:1px solid #000000" />
-
+            {% endfor %}
         </div>
 
     </div>
