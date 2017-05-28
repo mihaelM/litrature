@@ -20,11 +20,6 @@
              <!--original only for quotes-->
              <pre class="newLine">{{text}}</pre>
 
-                <div class = "pull-left">
-                    <h6>
-                        <button class="btn"> Follow author </button> <b>Posted by: </b>{{author}} &nbsp;&nbsp;&nbsp;   <!--if not already following-->
-                    </h6>
-                </div>
 
                 <div  class = "pull-right"> <!--there was h6 size of text should do it-->
                      
@@ -75,7 +70,7 @@
                <div class="row">
                        <div class="col-md-2">
                                 <h5> <b> {{comment.author_ID}} </b> </h5>
-                                <img src="{% static 'app/images/dogeIsReal.jpeg'  %}"  height="70" width="70" />
+                                <img src=""  height="70" width="70" /> 
                        </div>
 
                         <div class="col-md-10">
@@ -84,12 +79,10 @@
                                     {{comment.text}}
                                 </h5>
 
-                                <h6 class="pull-right"> <b> 1.1.2011. </b> </h6>
+                                <h6 class="pull-right"> <b> {{comment.date}} </b> </h6>
                            </p>
                      </div>
                </div>
-           
-                <hr style="height:1px;border-top:1px solid #000000" />
 
             {% endfor %}
         </div>

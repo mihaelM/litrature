@@ -1,4 +1,6 @@
-﻿function upvote() {
+﻿var currShowing = 'poetry';
+
+function upvote() {
 
     $.ajax({
         url: window.location.pathname + "/upvote", // the endpoint
@@ -8,9 +10,13 @@
             csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function (response) {
-            var value = parseInt($('#upvotes').html());
-            value += 1;
-            $('#upvotes').html(value);
+          //  var value = parseInt($('#upvotes').html());
+            //  value += 1;
+            //only one key so code surely can be better
+            for (key in response) {
+                $('#upvotes').html(response[key]);
+            }
+           
         }
 
     });
@@ -21,6 +27,7 @@ function loadData(type) { //we can say we do not care what is the type
     
     //from which location do we want to gather our data, we should who is the user, let's say we know that and what do we want
     //poetry, quotes, stories
+    currShowing = type;
 
     $.ajax({
         url: window.location.pathname + "/" + type, // the endpoint
@@ -53,6 +60,7 @@ function loadData(type) { //we can say we do not care what is the type
 
 }
 
+
 function toArray(obj) {
     var array = [];
 
@@ -60,6 +68,11 @@ function toArray(obj) {
         array[i] = obj[i];
     }
     return array;
+}
+
+
+function linkDateSort() {
+    loadData(currShowing);
 }
 
 /*
@@ -85,11 +98,11 @@ function linkSort() {
         }
     });
     
-    document.getElementById("links").innerHTML = "";
+    $('#links').html('');
   
     for (var i = 0, l = links.length; i < l; i++) {
-        document.getElementById("links").append(links[i]);
-        document.getElementById("links").append(" ");
+        $('#links').append(links[i]);
+        $('#links').append('&nbsp; &nbsp;')
     }
 
 }

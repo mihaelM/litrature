@@ -72,11 +72,13 @@ class Following(models.Model):
 class ArtPublishComment(models.Model):
     author_ID = models.ForeignKey(User, on_delete=models.CASCADE)
     artPublish_ID = models.ForeignKey(ArtPublish, on_delete=models.CASCADE)
+    date = models.DateTimeField()
     text = models.TextField()
 
 class QuotePublishComment(models.Model):
     author_ID = models.ForeignKey(User, on_delete=models.CASCADE)
     quotePublish_ID = models.ForeignKey(QuotePublish, on_delete=models.CASCADE)
+    date = models.DateTimeField()
     text = models.TextField()
 
 

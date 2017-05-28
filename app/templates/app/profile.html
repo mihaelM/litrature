@@ -30,27 +30,10 @@
         </div>
     </div>
 
-    <!--will be hidden when looking somones else profile-->
-     <div class="col-md-2">
-        
-              <b> Following:  </b> 234 <br />
-               <input type="image" src="{% static 'app/images/loadMore.png'  %}"  height="25" width="67" />
-        
-    </div>
-
-     <div class="col-md-2">
-         <div class="pull-left">
-              <b> Followers:  </b>211 <br />
-               <input type="image" src="{% static 'app/images/loadMore.png'  %}"  height="25" width="67" />
-         </div>
+    <div class="col-md-4">
     </div>
 
     <div class="coll-md-3">
-         <div class="pull-right">
-             <button class="btn btn-primary btn-large  pub" > Published </button>
-         
-             <button class="btn btn-primary btn-large draft"> Drafts </button>
-         </div>
     </div>
 </div>
 
@@ -81,9 +64,8 @@
         <button class="btn btn-primary dropdown-toggle" type="button"  data-toggle="dropdown">Sort by
         <span class="caret"></span></button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <li><a href="#" id="bs1">Date posted</a></li>
-          <li><a href="#" id="bs2">Views</a></li>
-          <li><a href="#" id="bs3" onclick="linkSort()">Alphabet</a></li>
+          <li><a href="#" id="bs1" onclick="linkSort()">Alphabet</a></li>
+          <li><a href="#" id="bs2" onclick="linkDateSort()">Date posted</a></li>
    <!--  <li><button class="dropdown-item" type="button" id="bs3" onclick="linkSort()">Alphabet</button></li> -->
         </ul>
     </div>

@@ -20,6 +20,7 @@ urlpatterns = [
     # Examples:
     url(r'^$', app.views.home, name='home'),
     url(r'^contact$', app.views.contact, name='contact'),
+    url(r'^help$', app.views.help, name='help'), # we will remove it
     url(r'^quotes', app.views.quotes, name='quotes'),
     url(r'^about', app.views.about, name='about'),
     url(r'^myprofile$', app.views.myprofile, name='myprofile'),

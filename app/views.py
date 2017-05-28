@@ -140,6 +140,7 @@ def myprofile(request):
         }
     )
 
+
 #takes 2 argument 1, given...
 @csrf_exempt
 def loadData(request, type): ###we do not need 2 instances of type, but we can pretend for now
@@ -217,6 +218,7 @@ def write(request):
         title = request.POST['titleLit']
         
 
+        #currently not used, maybe in future, but not for this project
         if 'draft' in request.POST:#i dalje ne radi meh...
             
             if genre == 'Quote': #big Q
@@ -273,24 +275,35 @@ def upvote(request, type, id):
         print('HERE WE ARE')
         if type == 'quote':
             quote = QuotePublish.objects.get(id = id)
-            quote.upvotes = F('upvotes') + 1
-            quote.save()
-            upvote = AuthorsUpvotes(author_ID = request.user, type = type, art_ID = id)
-            upvote.save()
+            cnt = AuthorsUpvotes.objects.all().filter(author_ID = request.user, type = type, art_ID = id).count()
+
+            ret = quote.upvotes
+            # disabling multiple upvotes
+            if not cnt > 0:
+               
+                ret += 1
+                quote.upvotes = F('upvotes') + 1
+                quote.save()
+                upvote = AuthorsUpvotes(author_ID = request.user, type = type, art_ID = id)
+                upvote.save()
            
         else:
             art = ArtPublish.objects.get(id = id)
-            art.upvotes = F('upvotes') + 1
-            art.save()
-            upvote = AuthorsUpvotes(author_ID = request.user, type = type, art_ID = id)
-            upvote.save()
+            cnt = AuthorsUpvotes.objects.all().filter(author_ID = request.user, type = type, art_ID = id).count()
 
-        return HttpResponse()
-    """   return HttpResponse(
-            json.dumps({"nothing to see": "this isn't happening"}),
+            ret = art.upvotes
+            if not cnt > 0:
+                ret += 1
+                art.upvotes = F('upvotes') + 1
+                art.save()
+                upvote = AuthorsUpvotes(author_ID = request.user, type = type, art_ID = id)
+                upvote.save()
+
+        return HttpResponse(
+            json.dumps({'upvotes':ret}),
             content_type="application/json"
-        )
-    """
+         )
+
 
     return HttpResponse()
 
@@ -322,10 +335,10 @@ def look(request, type, id):
             comment = request.POST['comment']
            # print(comment)
             
-            quotePublishComment = QuotePublishComment(author_ID = request.user, quotePublish_ID = quote, text = comment)
+            quotePublishComment = QuotePublishComment(author_ID = request.user, quotePublish_ID = quote, date = datetime.now(), text = comment)
             quotePublishComment.save()
         
-        allComments = QuotePublishComment.objects.all().filter(quotePublish_ID = quote).defer("author_ID", "text")
+        allComments = QuotePublishComment.objects.all().filter(quotePublish_ID = quote).defer("author_ID", "date", "text")[::-1]
 
     else:
         art = ArtPublish.objects.get(id = id)
@@ -343,11 +356,11 @@ def look(request, type, id):
         elif request.method == 'POST':
             comment = request.POST['comment']
 
-            artPublishComment = ArtPublishComment(author_ID = request.user, artPublish_ID = art, text = comment)
+            artPublishComment = ArtPublishComment(author_ID = request.user, artPublish_ID = art, date = datetime.now(), text = comment)
             artPublishComment.save()
     
 
-        allComments = ArtPublishComment.objects.all().filter(artPublish_ID = art).defer("author_ID", "text")
+        allComments = ArtPublishComment.objects.all().filter(artPublish_ID = art).defer("author_ID", "date", "text")[::-1]
 
     return render(
         request,
@@ -380,7 +393,7 @@ def poetry(request):
     #solution without joining tables ok :P
 
     # we can take only some rows
-    songs = ArtPublish.objects.all().filter(genre = 'Poetry').defer("id", "title", "date", "author_ID")
+    songs = ArtPublish.objects.all().filter(genre = 'Poetry').defer("id", "title", "date", "author_ID")[::-1]
     
 
     return render(
@@ -395,7 +408,7 @@ def poetry(request):
 def shortStories(request):
     """Renders the quotes page."""
     assert isinstance(request, HttpRequest)
-    stories = ArtPublish.objects.all().filter(genre = 'Story').defer("id", "title", "date", "author_ID")
+    stories = ArtPublish.objects.all().filter(genre = 'Story').defer("id", "title", "date", "author_ID")[::-1]
     return render(
         request,
         'app/shortStories.html', #add
@@ -409,7 +422,7 @@ def quotes(request):
     """Renders the quotes page."""
     assert isinstance(request, HttpRequest)
 
-    allQuotes = QuotePublish.objects.all().defer("id", "title", "date", "author_ID", "originalAuthor")
+    allQuotes = QuotePublish.objects.all().defer("id", "title", "date", "author_ID", "originalAuthor")[::-1]
    
     return render(
         request,
@@ -466,4 +479,21 @@ def register(request):
             request,
             'app/register.html'
         )
-     
+
+#this is strange way to process database queryies we want to do (perheps get rid of some data), we just write them here, and call help route
+def help(request):
+        """Renders the home page."""
+        assert isinstance(request, HttpRequest)
+
+
+        QuotePublishComment.objects.all().delete()
+        ArtPublishComment.objects.all().delete()
+
+        return render(
+        request,
+        'app/index.html',
+        {
+            'title':'Home Page',
+            'year':datetime.now().year,
+        }
+    )
