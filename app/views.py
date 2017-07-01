@@ -10,7 +10,7 @@ from forms import RegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
-from django.http.response import HttpResponseRedirect, HttpResponse
+from django.http.response import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 from datetime import datetime    
 from models import *
@@ -86,8 +86,10 @@ def mylogin(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password) #not solving none yet
-        login(request, user)
-
+        try:
+            login(request, user)
+        except:
+            return HttpResponseNotFound('<h1>Login did not succeed.</h1>')
         return HttpResponseRedirect(reverse('myprofile'))
 
 #httpredirect not so good
@@ -104,6 +106,7 @@ def myprofile(request):
     try:
         profile_pic = UserDetails.objects.all().filter(user = username).defer("profile_pic")[0]
     except:
+        print("We made it")
         profile_pic = None
     
     # load songs of his, that's it basically
@@ -451,28 +454,32 @@ def register(request):
 
 
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        email = request.POST['email']
-        pseudonime = request.POST['pseudonime']
-        favoriteBooks = request.POST['favoriteBooks']
-        pic = request.POST['pic']
+        try:
+            username = request.POST['username']
+            password = request.POST['password']
+            email = request.POST['email']
+            pseudonime = request.POST['pseudonime']
+            favoriteBooks = request.POST['favoriteBooks']
+            pic = request.POST['pic']
 
-        user = User.objects.create_user(username, email, password)
-        user.save()
+            user = User.objects.create_user(username, email, password)
+            user.save()
 
-        userDetails = UserDetails(user = user, pseudonime = pseudonime, favorite_book = favoriteBooks, profile_pic = pic)
-        userDetails.save()
+            userDetails = UserDetails(user = user, pseudonime = pseudonime, favorite_book = favoriteBooks, profile_pic = pic)
+            userDetails.save()
 
 
-        user = authenticate(username=username, password=password) #not solving none yet
-        #print(username)
-        #print(password)
+            user = authenticate(username=username, password=password) #not solving none yet
+            #print(username)
+            #print(password)
 
-        login(request, user)
+            login(request, user)
 
-        # we need to save it user details also
-        return HttpResponseRedirect(reverse('myprofile'))
+            # we need to save it user details also
+            return HttpResponseRedirect(reverse('myprofile'))
+        except:
+            return HttpResponseNotFound('<h1>Registering failed.</h1>')
+
     else:  
 
         return render(
