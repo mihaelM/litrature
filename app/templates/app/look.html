@@ -16,7 +16,7 @@
          <div class="jumbotron myJumbotron2">
 
             <b> {{title}} </b>     
-            <h6> <b>Genre: </b>{{genre}}  &nbsp;&nbsp;&nbsp; <b>Date: </b>{{date}} &nbsp;&nbsp;&nbsp; {% if source %} <b>Source </b>{{source}} {% endif %}</h6> 
+            <h6> <b>Genre: </b>{{genre}}  &nbsp;&nbsp;&nbsp; <b>Date: </b>{{date}} &nbsp;&nbsp;&nbsp; {% if originalAuthor %} <b>Original source: </b>{{originalAuthor}} {% endif %}</h6> 
              <!--original only for quotes-->
              <pre class="newLine">{{text}}</pre>
 
@@ -63,14 +63,14 @@
         
         
 
-            {% for comment in allComments %}
+            {% for comment, picture in zipped %}
 
                <hr style="height:1px;border-top:1px solid #000000" />
 
                <div class="row">
                        <div class="col-md-2">
                                 <h5> <b> {{comment.author_ID}} </b> </h5>
-                                <img src=""  height="70" width="70" /> 
+                                <img src="{{ picture.url }}"  height="70" width="70" /> 
                        </div>
 
                         <div class="col-md-10">

@@ -18,6 +18,9 @@ from django.db.models import F
 from django.views.decorators.csrf import csrf_exempt
 import simplejson
 import json
+from django.shortcuts import render
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 def home(request):
     """Renders the home page."""
@@ -104,9 +107,10 @@ def myprofile(request):
     username = request.user
     
     try:
-        profile_pic = UserDetails.objects.all().filter(user = username).defer("profile_pic")[0]
+        print ("Attempt")
+        profile_pic = UserDetails.objects.all().filter(user = username).defer("profile_pic")[0].profile_pic
     except:
-        print("We made it")
+        print("We did not made it")
         profile_pic = None
     
     # load songs of his, that's it basically
@@ -343,6 +347,16 @@ def look(request, type, id):
         
         allComments = QuotePublishComment.objects.all().filter(quotePublish_ID = quote).defer("author_ID", "date", "text")[::-1]
 
+        authorToPic = []
+
+        for comment in allComments:
+            rez = None
+            try:
+                rez = UserDetails.objects.all().filter(user = comment.author_ID).defer("profile_pic")[0].profile_pic
+            except:
+                rez = None
+            authorToPic.append(rez)
+
     else:
         art = ArtPublish.objects.get(id = id)
 
@@ -365,6 +379,19 @@ def look(request, type, id):
 
         allComments = ArtPublishComment.objects.all().filter(artPublish_ID = art).defer("author_ID", "date", "text")[::-1]
 
+        authorToPic = []
+
+        for comment in allComments:
+            rez = None
+            try:
+                rez = UserDetails.objects.all().filter(user = comment.author_ID).defer("profile_pic")[0].profile_pic
+            except:
+                rez = None
+            authorToPic.append(rez)
+
+
+       
+
     return render(
         request,
         'app/look.html', #add
@@ -379,7 +406,7 @@ def look(request, type, id):
             'views':views + 1,
             'upvotes':upvotes,
             'hasIt':hasIt,
-            'allComments':allComments
+            'zipped':zip(allComments, authorToPic)
         }
     )
 
@@ -453,18 +480,19 @@ def register(request):
     #print("ARE WE EVEN HERE")
 
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES['pictureM']: #wohoho provjerio gore i proradilo
         try:
             username = request.POST['username']
             password = request.POST['password']
             email = request.POST['email']
             pseudonime = request.POST['pseudonime']
             favoriteBooks = request.POST['favoriteBooks']
-            pic = request.POST['pic']
+            pic = request.FILES['pictureM']
 
+            
             user = User.objects.create_user(username, email, password)
             user.save()
-
+            print("Jos tu")
             userDetails = UserDetails(user = user, pseudonime = pseudonime, favorite_book = favoriteBooks, profile_pic = pic)
             userDetails.save()
 

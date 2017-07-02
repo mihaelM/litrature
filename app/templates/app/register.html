@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
-            <form action="." method="post" class="form-horizontal">
+            <form action="." method="post" class="form-horizontal" enctype="multipart/form-data">
                 {% csrf_token %}
                 
                 
@@ -42,7 +42,7 @@
                     <div class="col-md-9" style="white-space:nowrap">
                      <!-- authomatic generation of profile picture ?-->
                            
-                         <b> Upload profile picture </b> <input type="file" value="Upload your profile picture" name="pic" accept="image/*"> 
+                         <b> Upload profile picture </b> <input type="file" name="pictureM" value="Upload your profile picture" accept="image/*"> 
                         
                     </div>
                 </div>
