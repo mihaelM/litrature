@@ -123,7 +123,6 @@ django-appengine-utils == 0.1.0
 django-heroku == 0.3.1
 
 # C:\Users\Mihael\Desktop\projects\litrature\DjangoWebProject2\settings.py: 15
-django-heroku-hiberly == 0.3.1
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\html5lib\treeadapters\genshi.py: 4
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\html5lib\treewalkers\genshi.py: 5
@@ -141,10 +140,9 @@ htmlparser == 0.0.2
 httpsproxy-urllib2 == 1.0
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\distlib\scripts.py: 130
-import-java == 0.6
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\django\core\management\commands\shell.py: 34,40,47
-ipython == 7.18.1
+ipython == 7.16.1
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\html5lib\treebuilders\etree_lxml.py: 25
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\html5lib\treewalkers\etree_lxml.py: 4
@@ -301,7 +299,6 @@ python3-memcached == 1.51
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\appdirs.py: 447
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\setuptools\sandbox.py: 354
-pywin32 == 228
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\requests\adapters.py: 80
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\requests\api.py: 18
@@ -370,3 +367,6 @@ six == 1.15.0
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\requests\packages\urllib3\contrib\ntlmpool.py: 15
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\requests\packages\urllib3\contrib\pyopenssl.py: 63
 urllib3 == 1.25.10
+
+simplejson == 3.17.2
+gunicorn == 20.0.4

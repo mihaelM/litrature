@@ -120,23 +120,23 @@ def myprofile(request):
     
     # load songs of his, that's it basically
 
-    songs = ArtPublish.objects.all().filter(author_ID = username, genre = 'Poetry').defer("id", "title")
+    songs = ArtPublish.objects.all().filter(author_id = username, genre = 'Poetry').defer("id", "title")
 
     #count posts first
-    numOfPosts = ArtPublish.objects.all().filter(author_ID = username).count()
+    numOfPosts = ArtPublish.objects.all().filter(author_id = username).count()
     #print("broj {}".format(numOfPosts))
-    numOfPosts += QuotePublish.objects.all().filter(author_ID = username).count()
+    numOfPosts += QuotePublish.objects.all().filter(author_id = username).count()
 
     #number of views of his art of course, what else
 
-    numOfViews = x(ArtPublish.objects.all().filter(author_ID = username).aggregate(Sum('views'))['views__sum'])
+    numOfViews = x(ArtPublish.objects.all().filter(author_id = username).aggregate(Sum('views'))['views__sum'])
 
-    numOfViews += x(QuotePublish.objects.all().filter(author_ID = username).aggregate(Sum('views'))['views__sum'])
+    numOfViews += x(QuotePublish.objects.all().filter(author_id = username).aggregate(Sum('views'))['views__sum'])
 
     # numer of upvotes of his art ofcourse
 
-    numOfUpvotes = x(ArtPublish.objects.all().filter(author_ID = username).aggregate(Sum('upvotes'))['upvotes__sum'])
-    numOfUpvotes += x(QuotePublish.objects.all().filter(author_ID = username).aggregate(Sum('upvotes'))['upvotes__sum'])
+    numOfUpvotes = x(ArtPublish.objects.all().filter(author_id = username).aggregate(Sum('upvotes'))['upvotes__sum'])
+    numOfUpvotes += x(QuotePublish.objects.all().filter(author_id = username).aggregate(Sum('upvotes'))['upvotes__sum'])
     
 
     return render(
@@ -173,11 +173,11 @@ def loadData(request, type): ###we do not need 2 instances of type, but we can p
     returnList = None #this is stupid name
 
     if type == 'poetry':      
-        art = ArtPublish.objects.all().filter(author_ID = username, genre = 'Poetry').defer("id", "title")  
+        art = ArtPublish.objects.all().filter(author_id = username, genre = 'Poetry').defer("id", "title")  
     elif type == 'stories':
-        art = ArtPublish.objects.all().filter(author_ID = username, genre = 'Story').defer("id", "title")
+        art = ArtPublish.objects.all().filter(author_id = username, genre = 'Story').defer("id", "title")
     elif type =='quotes':
-        art = QuotePublish.objects.all().filter(author_ID = username, genre = 'Quote').defer("id", "title")
+        art = QuotePublish.objects.all().filter(author_id = username, genre = 'Quote').defer("id", "title")
     
     dictArt = {}
 
@@ -204,7 +204,7 @@ def renderProfile(request):
         {
             'title':'Profile Page',
             'year':datetime.now().year,
-            'username':username
+            'username':request.user
         }
     )
 
@@ -223,9 +223,9 @@ def write(request):
         )
 
     if request.method == 'POST':
-        author_ID = None #not got this yet
+        author_id = None #not got this yet
         if request.user.is_authenticated: #works, we will try with redirecting
-            author_ID = request.user
+            author_id = request.user
                 
         date = datetime.now()
         views = 0
@@ -239,10 +239,10 @@ def write(request):
         if 'draft' in request.POST:#i dalje ne radi meh...
             
             if genre == 'Quote': #big Q
-                quoteEntry = QuoteDraft(author_ID = author_ID, date = date, text = text, genre = genre, title = title, originalAuthor = request.POST['originalAuthor']) #defined in myScript.js
+                quoteEntry = QuoteDraft(author_id = author_id, date = date, text = text, genre = genre, title = title, originalAuthor = request.POST['originalAuthor']) #defined in myScript.js
                 quoteEntry.save()
             else:
-                entry = ArtDraft(author_ID = author_ID, date = date, text = text, genre = genre, title = title)
+                entry = ArtDraft(author_id = author_id, date = date, text = text, genre = genre, title = title)
                 entry.save()
 
                 #note that it can be seen in drafts and redirect to profile
@@ -256,10 +256,10 @@ def write(request):
 
             if genre == 'Quote': #big Q
                 originalAuthor = request.POST['originalAuthor']
-                quoteEntry = QuotePublish(author_ID = author_ID, date = date, views = views, upvotes = upvotes, text = text, genre = genre, title = title, originalAuthor = originalAuthor) #defined in myScript.js
+                quoteEntry = QuotePublish(author_id = author_id, date = date, views = views, upvotes = upvotes, text = text, genre = genre, title = title, originalAuthor = originalAuthor) #defined in myScript.js
                 quoteEntry.save()
             else:
-                entry = ArtPublish(author_ID = author_ID, date = date, views = views, upvotes = upvotes, text = text, genre = genre, title = title)
+                entry = ArtPublish(author_id = author_id, date = date, views = views, upvotes = upvotes, text = text, genre = genre, title = title)
                 entry.save()
 
             return publishLook(request, title, genre, date, request.user, originalAuthor, text)
@@ -292,7 +292,7 @@ def upvote(request, type, id):
         print('HERE WE ARE')
         if type == 'quote':
             quote = QuotePublish.objects.get(id = id)
-            cnt = AuthorsUpvotes.objects.all().filter(author_ID = request.user, type = type, art_ID = id).count()
+            cnt = AuthorsUpvotes.objects.all().filter(author_id = request.user, type = type, art_id = id).count()
 
             ret = quote.upvotes
             # disabling multiple upvotes
@@ -301,19 +301,19 @@ def upvote(request, type, id):
                 ret += 1
                 quote.upvotes = F('upvotes') + 1
                 quote.save()
-                upvote = AuthorsUpvotes(author_ID = request.user, type = type, art_ID = id)
+                upvote = AuthorsUpvotes(author_id = request.user, type = type, art_id = id)
                 upvote.save()
            
         else:
             art = ArtPublish.objects.get(id = id)
-            cnt = AuthorsUpvotes.objects.all().filter(author_ID = request.user, type = type, art_ID = id).count()
+            cnt = AuthorsUpvotes.objects.all().filter(author_id = request.user, type = type, art_id = id).count()
 
             ret = art.upvotes
             if not cnt > 0:
                 ret += 1
                 art.upvotes = F('upvotes') + 1
                 art.save()
-                upvote = AuthorsUpvotes(author_ID = request.user, type = type, art_ID = id)
+                upvote = AuthorsUpvotes(author_id = request.user, type = type, art_id = id)
                 upvote.save()
 
         return HttpResponse(
@@ -339,30 +339,30 @@ def look(request, type, id):
     if type == 'quote':
         quote = QuotePublish.objects.get(id = id)
 
-        title, genre, date, user, text, originalAuthor, views, upvotes = quote.title, quote.genre, quote.date, quote.author_ID, quote.text, quote.originalAuthor, quote.views, quote.upvotes
+        title, genre, date, user, text, originalAuthor, views, upvotes = quote.title, quote.genre, quote.date, quote.author_id, quote.text, quote.originalAuthor, quote.views, quote.upvotes
         if request.method == 'GET':
 
             quote.views = F('views') + 1
             quote.save()
 
             # we should check if user has liked this particular quote in the beggining he surely did not
-            hasIt = AuthorsUpvotes.objects.all().filter(author_ID = quote.author_ID, type = quote.genre, art_ID = id).count()
+            hasIt = AuthorsUpvotes.objects.all().filter(author_id = quote.author_id, type = quote.genre, art_id = id).count()
 
         elif request.method == 'POST':
             comment = request.POST['comment']
            # print(comment)
             
-            quotePublishComment = QuotePublishComment(author_ID = request.user, quotePublish_ID = quote, date = datetime.now(), text = comment)
+            quotePublishComment = QuotePublishComment(author_id = request.user, quote_publish_id = quote, date = datetime.now(), text = comment)
             quotePublishComment.save()
         
-        allComments = QuotePublishComment.objects.all().filter(quotePublish_ID = quote).defer("author_ID", "date", "text")[::-1]
+        allComments = QuotePublishComment.objects.all().filter(quotePublish_id = quote).defer("author_id", "date", "text")[::-1]
 
         authorToPic = []
 
         for comment in allComments:
             rez = None
             try:
-                rez = UserDetails.objects.all().filter(user = comment.author_ID).defer("profile_pic")[0].profile_pic
+                rez = UserDetails.objects.all().filter(user = comment.author_id).defer("profile_pic")[0].profile_pic
             except:
                 rez = None
             authorToPic.append(rez)
@@ -370,31 +370,31 @@ def look(request, type, id):
     else:
         art = ArtPublish.objects.get(id = id)
 
-        title, genre, date, user, text, views, upvotes = art.title, art.genre, art.date, art.author_ID, art.text, art.views, art.upvotes   
+        title, genre, date, user, text, views, upvotes = art.title, art.genre, art.date, art.author_id, art.text, art.views, art.upvotes
         
         if request.method == 'GET':
             art.views = F('views') + 1
             art.save()
 
-            hasIt = AuthorsUpvotes.objects.all().filter(author_ID = art.author_ID, type = art.genre, art_ID = id).count()
+            hasIt = AuthorsUpvotes.objects.all().filter(author_id = art.author_id, type = art.genre, art_id = id).count()
 
             #gather all comments of this work
 
         elif request.method == 'POST':
             comment = request.POST['comment']
 
-            artPublishComment = ArtPublishComment(author_ID = request.user, artPublish_ID = art, date = datetime.now(), text = comment)
+            artPublishComment = ArtPublishComment(author_id = request.user, artPublish_id = art, date = datetime.now(), text = comment)
             artPublishComment.save()
     
 
-        allComments = ArtPublishComment.objects.all().filter(artPublish_ID = art).defer("author_ID", "date", "text")[::-1]
+        allComments = ArtPublishComment.objects.all().filter(artPublish_id = art).defer("author_id", "date", "text")[::-1]
 
         authorToPic = []
 
         for comment in allComments:
             rez = None
             try:
-                rez = UserDetails.objects.all().filter(user = comment.author_ID).defer("profile_pic")[0].profile_pic
+                rez = UserDetails.objects.all().filter(user = comment.author_id).defer("profile_pic")[0].profile_pic
             except:
                 rez = None
             authorToPic.append(rez)
@@ -431,11 +431,11 @@ def poetry(request):
 
     #link to author, hm, by name I guess, yeah that will have to be unique too .defer("pseudonime")
 
-    #songs = ArtPublish.objects.all().prefetch_related("author_ID").filter(genre = 'Poetry')
+    #songs = ArtPublish.objects.all().prefetch_related("author_id").filter(genre = 'Poetry')
     #solution without joining tables ok :P
 
     # we can take only some rows
-    songs = ArtPublish.objects.all().filter(genre = 'Poetry').defer("id", "title", "date", "author_ID")[::-1]
+    songs = ArtPublish.objects.all().filter(genre = 'Poetry').defer("id", "title", "date", "author_id")[::-1]
     print(songs)
 
     return render(
@@ -451,7 +451,7 @@ def poetry(request):
 def shortStories(request):
     """Renders the quotes page."""
     assert isinstance(request, HttpRequest)
-    stories = ArtPublish.objects.all().filter(genre = 'Story').defer("id", "title", "date", "author_ID")[::-1]
+    stories = ArtPublish.objects.all().filter(genre = 'Story').defer("id", "title", "date", "author_id")[::-1]
     return render(
         request,
         'app/shortStories.html', #add
@@ -467,7 +467,7 @@ def quotes(request):
     """Renders the quotes page."""
     assert isinstance(request, HttpRequest)
 
-    allQuotes = QuotePublish.objects.all().defer("id", "title", "date", "author_ID", "originalAuthor")[::-1]
+    allQuotes = QuotePublish.objects.all().defer("id", "title", "date", "author_id", "originalAuthor")[::-1]
    
     return render(
         request,

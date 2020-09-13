@@ -17,7 +17,7 @@ class UserDetails(models.Model):
 
 
 class ArtPublish(models.Model):
-    author_ID = models.ForeignKey(User, on_delete=models.CASCADE) #do I want to remove profile i.e. art when deleting user (?!)
+    author_id = models.ForeignKey(User, on_delete=models.CASCADE) #do I want to remove profile i.e. art when deleting user (?!)
     date = models.DateTimeField()
     views = models.BigIntegerField()
     upvotes = models.BigIntegerField()
@@ -26,7 +26,7 @@ class ArtPublish(models.Model):
     title = models.CharField(max_length = 100)
 
 class ArtDraft(models.Model):
-    author_ID = models.ForeignKey(User, on_delete=models.CASCADE) #do I want to remove profile i.e. art when deleting user (?!)
+    author_id = models.ForeignKey(User, on_delete=models.CASCADE) #do I want to remove profile i.e. art when deleting user (?!)
     date = models.DateTimeField()
     text = models.TextField()
     genre = models.CharField(max_length = 30)
@@ -35,7 +35,7 @@ class ArtDraft(models.Model):
 # we seperate poetry and short storyies in art, and quotes seperately
 
 class QuotePublish(models.Model):
-    author_ID = models.ForeignKey(User, on_delete=models.CASCADE) #do I want to remove profile i.e. art when deleting user (?!)
+    author_id = models.ForeignKey(User, on_delete=models.CASCADE) #do I want to remove profile i.e. art when deleting user (?!)
     date = models.DateTimeField()
     views = models.BigIntegerField()
     upvotes = models.BigIntegerField()
@@ -45,7 +45,7 @@ class QuotePublish(models.Model):
     originalAuthor = models.CharField(max_length = 100)
 
 class QuoteDraft(models.Model):
-    author_ID = models.ForeignKey(User, on_delete=models.CASCADE) #do I want to remove profile i.e. art when deleting user (?!)
+    author_id = models.ForeignKey(User, on_delete=models.CASCADE) #do I want to remove profile i.e. art when deleting user (?!)
     date = models.DateTimeField()
     text = models.TextField()
     genre = models.CharField(max_length = 30)
@@ -54,30 +54,30 @@ class QuoteDraft(models.Model):
 
 
 class AuthorsUpvotes(models.Model):
-    author_ID = models.ForeignKey(User, on_delete=models.CASCADE)
+    author_id = models.ForeignKey(User, on_delete=models.CASCADE)
     type = models.CharField(max_length=30)
-    art_ID = models.BigIntegerField()
+    art_id = models.BigIntegerField()
 
   
 
 class Followers(models.Model):
-    author_ID = models.ForeignKey(User, on_delete=models.CASCADE)
+    author_id = models.ForeignKey(User, on_delete=models.CASCADE)
     follower = models.BigIntegerField()
 
 class Following(models.Model):
-    author_ID = models.ForeignKey(User, on_delete=models.CASCADE)
+    author_id = models.ForeignKey(User, on_delete=models.CASCADE)
     following = models.BigIntegerField()
 
 
 class ArtPublishComment(models.Model):
-    author_ID = models.ForeignKey(User, on_delete=models.CASCADE)
-    artPublish_ID = models.ForeignKey(ArtPublish, on_delete=models.CASCADE)
+    author_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    artPublish_id = models.ForeignKey(ArtPublish, on_delete=models.CASCADE)
     date = models.DateTimeField()
     text = models.TextField()
 
 class QuotePublishComment(models.Model):
-    author_ID = models.ForeignKey(User, on_delete=models.CASCADE)
-    quotePublish_ID = models.ForeignKey(QuotePublish, on_delete=models.CASCADE)
+    author_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    quotePublish_id = models.ForeignKey(QuotePublish, on_delete=models.CASCADE)
     date = models.DateTimeField()
     text = models.TextField()
 
