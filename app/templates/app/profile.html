@@ -1,5 +1,5 @@
 ﻿{% extends "app/layout.html" %}
-{% load staticfiles %}
+{% load static %}
 
 {% block content %}
 
@@ -14,8 +14,9 @@
     <div class="col-md-1">
         
        <!--  <img src="{% static 'app/images/dogeIsReal.jpeg'  %}"  height="110" width="110" /> -->
-        <img src="{{ profile_pic.url }}"  height="110" width="110" />
-        
+        {% if profile_pic  %}
+              <img src="{{ profile_pic.url }}"  height="110" width="110" />
+        {% endif %}
         
     </div>
 

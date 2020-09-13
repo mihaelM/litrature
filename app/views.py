@@ -6,14 +6,14 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-from forms import RegisterForm
+from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from django.http.response import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 from datetime import datetime    
-from models import *
+from .models import *
 from django.db.models import F
 from django.views.decorators.csrf import csrf_exempt
 import simplejson
@@ -21,6 +21,7 @@ import json
 from django.shortcuts import render
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+
 
 def home(request):
     """Renders the home page."""
@@ -83,7 +84,11 @@ def mylogin(request):
     if request.method == 'GET':
         return render (
              request,
-            'app/login.html')
+            'app/login.html',
+            {
+                'title':'Login Page',
+                'year':datetime.now().year,
+            })
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -138,6 +143,8 @@ def myprofile(request):
         request,
         'app/profile.html', #add
         {
+            'title':'Personal Page',
+            'year':datetime.now().year,
             'username':username,
             'songs' : songs,
             'numOfPosts' : numOfPosts,
@@ -195,6 +202,8 @@ def renderProfile(request):
         request,
         'app/profile.html', #add
         {
+            'title':'Profile Page',
+            'year':datetime.now().year,
             'username':username
         }
     )
@@ -208,7 +217,8 @@ def write(request):
             request,
             'app/write.html', #add
             {
-            
+              'title':'Write',
+              'year':datetime.now().year,
             }
         )
 
@@ -396,6 +406,8 @@ def look(request, type, id):
         request,
         'app/look.html', #add
         {
+            'title':'Home Page',
+            'year':datetime.now().year,
             'id':id,
             'title':title,
             'genre':genre,
@@ -424,14 +436,15 @@ def poetry(request):
 
     # we can take only some rows
     songs = ArtPublish.objects.all().filter(genre = 'Poetry').defer("id", "title", "date", "author_ID")[::-1]
-    
+    print(songs)
 
     return render(
         request,
         'app/poetry.html', #add
         {
-           'songs':songs 
-           
+           'title':'Home Page',
+           'year':datetime.now().year,
+           'songs':songs
         }
     )
 
@@ -443,7 +456,9 @@ def shortStories(request):
         request,
         'app/shortStories.html', #add
         {
-            'stories':stories
+           'title':'Home Page',
+           'year':datetime.now().year,
+           'stories':stories
         }
     )
 
@@ -458,7 +473,9 @@ def quotes(request):
         request,
         'app/quotes.html', #add
         {
-            'quotes':allQuotes
+           'title':'Home Page',
+           'year':datetime.now().year,
+           'quotes':allQuotes
         }
     )
 
@@ -512,8 +529,14 @@ def register(request):
 
         return render(
             request,
-            'app/register.html'
-        )
+            'app/register.html',
+             {
+                'title':'Home Page',
+                'year':datetime.now().year,
+             }
+         )
+
+        
 
 #this is strange way to process database queryies we want to do (perheps get rid of some data), we just write them here, and call help route
 def help(request):

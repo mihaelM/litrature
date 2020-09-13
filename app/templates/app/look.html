@@ -1,5 +1,5 @@
 ﻿{% extends "app/layout.html" %}
-{% load staticfiles %}
+{% load static %}
 
 
 {% block content %}
@@ -70,7 +70,9 @@
                <div class="row">
                        <div class="col-md-2">
                                 <h5> <b> {{comment.author_ID}} </b> </h5>
-                                <img src="{{ picture.url }}"  height="70" width="70" /> 
+                                {% if picture %}
+                                      <img src="{{ picture.url }}"  height="70" width="70" /> 
+                                {% endif %}
                        </div>
 
                         <div class="col-md-10">

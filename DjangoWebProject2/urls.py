@@ -38,17 +38,14 @@ urlpatterns = [
     url(r'^register/$', app.views.register, name='register'),
     url(r'^login/$', app.views.mylogin, name='mylogin'),
     url(r'^logout$',
-        django.contrib.auth.views.logout,
-        {
-            'next_page': '/',
-        },
+        django.contrib.auth.views.LogoutView.as_view(next_page = '/'),
         name='logout'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
      url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-     url(r'^admin/', include(admin.site.urls)),
+     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
