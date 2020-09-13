@@ -42,7 +42,7 @@ class QuotePublish(models.Model):
     text = models.TextField()
     genre = models.CharField(max_length = 30) #we should remove it but let's keep it for now
     title = models.CharField(max_length = 100)
-    originalAuthor = models.CharField(max_length = 100)
+    originalauthor = models.CharField(max_length = 100)
 
 class QuoteDraft(models.Model):
     author_id = models.ForeignKey(User, on_delete=models.CASCADE) #do I want to remove profile i.e. art when deleting user (?!)
@@ -50,7 +50,7 @@ class QuoteDraft(models.Model):
     text = models.TextField()
     genre = models.CharField(max_length = 30)
     title = models.CharField(max_length = 100)
-    originalAuthor = models.CharField(max_length = 100)
+    originalauthor = models.CharField(max_length = 100)
 
 
 class AuthorsUpvotes(models.Model):
@@ -71,13 +71,13 @@ class Following(models.Model):
 
 class ArtPublishComment(models.Model):
     author_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    artPublish_id = models.ForeignKey(ArtPublish, on_delete=models.CASCADE)
+    artpublish_id = models.ForeignKey(ArtPublish, on_delete=models.CASCADE)
     date = models.DateTimeField()
     text = models.TextField()
 
 class QuotePublishComment(models.Model):
     author_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    quotePublish_id = models.ForeignKey(QuotePublish, on_delete=models.CASCADE)
+    quotepublish_id = models.ForeignKey(QuotePublish, on_delete=models.CASCADE)
     date = models.DateTimeField()
     text = models.TextField()
 

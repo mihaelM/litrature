@@ -239,7 +239,7 @@ def write(request):
         if 'draft' in request.POST:#i dalje ne radi meh...
             
             if genre == 'Quote': #big Q
-                quoteEntry = QuoteDraft(author_id = author_id, date = date, text = text, genre = genre, title = title, originalAuthor = request.POST['originalAuthor']) #defined in myScript.js
+                quoteEntry = QuoteDraft(author_id = author_id, date = date, text = text, genre = genre, title = title, originalauthor = request.POST['originalauthor']) #defined in myScript.js
                 quoteEntry.save()
             else:
                 entry = ArtDraft(author_id = author_id, date = date, text = text, genre = genre, title = title)
@@ -252,19 +252,19 @@ def write(request):
 
         elif 'publish' in request.POST:
            
-            originalAuthor = None
+            originalauthor = None
 
             if genre == 'Quote': #big Q
-                originalAuthor = request.POST['originalAuthor']
-                quoteEntry = QuotePublish(author_id = author_id, date = date, views = views, upvotes = upvotes, text = text, genre = genre, title = title, originalAuthor = originalAuthor) #defined in myScript.js
+                originalauthor = request.POST['originalauthor']
+                quoteEntry = QuotePublish(author_id = author_id, date = date, views = views, upvotes = upvotes, text = text, genre = genre, title = title, originalauthor = originalauthor) #defined in myScript.js
                 quoteEntry.save()
             else:
                 entry = ArtPublish(author_id = author_id, date = date, views = views, upvotes = upvotes, text = text, genre = genre, title = title)
                 entry.save()
 
-            return publishLook(request, title, genre, date, request.user, originalAuthor, text)
+            return publishLook(request, title, genre, date, request.user, originalauthor, text)
 
-def publishLook (request, title, genre, date, user, originalAuthor, text):
+def publishLook (request, title, genre, date, user, originalauthor, text):
     assert isinstance(request, HttpRequest)
 
     return render(
@@ -276,7 +276,7 @@ def publishLook (request, title, genre, date, user, originalAuthor, text):
             'date':date,
             'user':user,
             'text':text,
-            'originalAuthor':originalAuthor,
+            'originalauthor':originalauthor,
             'views':0,
             'upvotes':0           
         }
@@ -331,7 +331,7 @@ def look(request, type, id):
 
     #look/type/id
     #works
-    originalAuthor = None
+    originalauthor = None
     hasIt = 0
 
     # should have used get, we'll try with that also..
@@ -339,7 +339,7 @@ def look(request, type, id):
     if type == 'quote':
         quote = QuotePublish.objects.get(id = id)
 
-        title, genre, date, user, text, originalAuthor, views, upvotes = quote.title, quote.genre, quote.date, quote.author_id, quote.text, quote.originalAuthor, quote.views, quote.upvotes
+        title, genre, date, user, text, originalauthor, views, upvotes = quote.title, quote.genre, quote.date, quote.author_id, quote.text, quote.originalauthor, quote.views, quote.upvotes
         if request.method == 'GET':
 
             quote.views = F('views') + 1
@@ -355,7 +355,7 @@ def look(request, type, id):
             quotePublishComment = QuotePublishComment(author_id = request.user, quote_publish_id = quote, date = datetime.now(), text = comment)
             quotePublishComment.save()
         
-        allComments = QuotePublishComment.objects.all().filter(quotePublish_id = quote).defer("author_id", "date", "text")[::-1]
+        allComments = QuotePublishComment.objects.all().filter(quotepublish_id = quote).defer("author_id", "date", "text")[::-1]
 
         authorToPic = []
 
@@ -383,11 +383,11 @@ def look(request, type, id):
         elif request.method == 'POST':
             comment = request.POST['comment']
 
-            artPublishComment = ArtPublishComment(author_id = request.user, artPublish_id = art, date = datetime.now(), text = comment)
+            artPublishComment = ArtPublishComment(author_id = request.user, artpublish_id = art, date = datetime.now(), text = comment)
             artPublishComment.save()
     
 
-        allComments = ArtPublishComment.objects.all().filter(artPublish_id = art).defer("author_id", "date", "text")[::-1]
+        allComments = ArtPublishComment.objects.all().filter(artpublish_id = art).defer("author_id", "date", "text")[::-1]
 
         authorToPic = []
 
@@ -414,7 +414,7 @@ def look(request, type, id):
             'date':date,
             'author':user, #!author
             'text':text,
-            'originalAuthor':originalAuthor,
+            'originalauthor':originalauthor,
             'views':views + 1,
             'upvotes':upvotes,
             'hasIt':hasIt,
@@ -467,7 +467,7 @@ def quotes(request):
     """Renders the quotes page."""
     assert isinstance(request, HttpRequest)
 
-    allQuotes = QuotePublish.objects.all().defer("id", "title", "date", "author_id", "originalAuthor")[::-1]
+    allQuotes = QuotePublish.objects.all().defer("id", "title", "date", "author_id", "originalauthor")[::-1]
    
     return render(
         request,

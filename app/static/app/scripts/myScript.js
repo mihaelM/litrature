@@ -258,7 +258,7 @@ $(function() {
 
 
             var boxElement = $('<input>').attr({
-                name: "originalAuthor", class: "form-control", id: "noticeweeks", placeholder: " Original source (can be unknown): "
+                name: "originalauthor", class: "form-control", id: "noticeweeks", placeholder: " Original source (can be unknown): "
             });
            // "<br>".appendTo("#inputplace");
             // "Source (can be unknown)".appendTo("#inputplace");
