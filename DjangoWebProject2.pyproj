@@ -5,6 +5,7 @@
     <Name>DjangoWebProject2</Name>
     <RootNamespace>DjangoWebProject2</RootNamespace>
     <InterpreterId>Global|PythonCore|3.8</InterpreterId>
+    <TestFramework>Pytest</TestFramework>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -75,6 +76,8 @@
     <Content Include="app\templates\app\write.html" />
     <Content Include="Metadata\deploymentTemplates\apiappconfig.azureresource.json" />
     <Content Include="Pillow-4.0.0-cp27-cp27m-win32.whl" />
+    <Content Include="Procfile.txt" />
+    <Content Include="Procfile.windows.txt" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
