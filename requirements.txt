@@ -91,7 +91,7 @@
 # C:\Users\Mihael\Desktop\projects\litrature\env\Scripts\player.py: 14
 # C:\Users\Mihael\Desktop\projects\litrature\env\Scripts\thresholder.py: 15
 # C:\Users\Mihael\Desktop\projects\litrature\env\Scripts\viewer.py: 14
-Pillow == 7.2.0
+Pillow == 8.2.0
 
 # C:\Users\Mihael\Desktop\projects\litrature\DjangoWebProject2\urls.py: 14,15
 app == 0.0.1
