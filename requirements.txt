@@ -244,7 +244,7 @@ org-geppetto-recording == 0.1.0
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\vcs\mercurial.py: 8,9,10
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\vcs\subversion.py: 12,166
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\wheel.py: 33,36,37,38,39,40,41,42,552
-pip == 9.0.3
+pip == 19.2
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pkg_resources\tests\test_resources.py: 649,652
 pkg-examples == 0.1
