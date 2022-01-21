@@ -142,7 +142,7 @@ httpsproxy-urllib2 == 1.0
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\distlib\scripts.py: 130
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\django\core\management\commands\shell.py: 34,40,47
-ipython == 7.16.1
+ipython == 7.16.3
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\html5lib\treebuilders\etree_lxml.py: 25
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\html5lib\treewalkers\etree_lxml.py: 4
