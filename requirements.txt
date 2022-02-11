@@ -250,7 +250,7 @@ pip == 9.0.3
 pkg-examples == 0.1
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\requests\packages\urllib3\contrib\appengine.py: 22
-protobuf == 3.12.2
+protobuf == 3.15.0
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\setuptools\sandbox.py: 14
 py4grid == 1.0.5
