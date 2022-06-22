@@ -159,7 +159,7 @@ myapp == 0.1dev
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\django\contrib\gis\shortcuts.py: 10
 # C:\Users\Mihael\Desktop\projects\litrature\obj\Debug\visualstudio_py_util.py: 610
-numpy == 1.19.1
+numpy == 1.22.0
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\OleFileIO_PL.py: 28
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\PIL\FpxImagePlugin.py: 22
