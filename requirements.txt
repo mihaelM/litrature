@@ -146,7 +146,7 @@ ipython == 7.16.1
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\html5lib\treebuilders\etree_lxml.py: 25
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\html5lib\treewalkers\etree_lxml.py: 4
-lxml == 4.5.2
+lxml == 4.9.1
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pkg_resources\tests\test_pkg_resources.py: 70
 mod == 0.3.0
