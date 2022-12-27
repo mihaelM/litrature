@@ -359,7 +359,7 @@ selenium == 3.141.0
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\setuptools\tests\test_upload_docs.py: 7,8
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\setuptools\tests\test_windows_wrappers.py: 23,24
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\setuptools\unicode_utils.py: 3
-setuptools == 39.0.1
+setuptools == 65.5.1
 
 # C:\Users\Mihael\Desktop\projects\litrature\env\Lib\site-packages\pip\_vendor\requests\packages\urllib3\contrib\pyopenssl.py: 67
 six == 1.15.0
